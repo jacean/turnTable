@@ -14,72 +14,53 @@
 
     </style>
     <script>
-        $(document).ready(function() {
-            var turnTable=new TurnTable({
-                domid:"turn-table",
-                sub:{
-                    res:["http://download.easyicon.net/png/528802/256/"],
-                    repeat:3,
-                    rotate:true,
-                    direct:"right",
-                    bind:{
-                        mouseover:function(){
-                            console.log("sub-over");
-                        }
-                    }
-                },
-                speed:9,
-                radius:100,
-                center:{
-                    res:"http://download.easyicon.net/png/528801/256/",
-                    display:"show",
-                    rotate:true,
-                    direct:"left",
-                    bind:{
-                        click:function(){
-                            console.log("center-click");
-                        },
-                        mouseover:function(){
-                            console.log("center-over");
-                        }
-                    }
-                }
-            });
-           
+        var jsfiddle={
+            "基础初始化":"<script async src='//jsfiddle.net/jacean/ayo2wg4a/embed/'><\/script>",
+            "子元素旋转&重复使用资源图片":'<script async src="//jsfiddle.net/jacean/tzdy8pbv/embed/"><\/script>',
+            "启用中心元素":'<script async src="//jsfiddle.net/jacean/wkqw8d2n/embed/"><\/script>',
+            "子元素和中心元素&绑定事件":'<script async src="//jsfiddle.net/jacean/L7tj5a7d/embed/"><\/script>'
+        };
+
+        $(document).ready(function(){
+            var reg = new RegExp("\\[([^\\[\\]]*?)\\]", 'igm'); //i g m是指分别用于指定区分大小写的匹配、全局匹配和多行匹配。
+ 
+            for(var k in jsfiddle){
+                var header=$("#fiddle-container").html();
+                header= header.replace(reg, function (node, key) { return { 'TITLE':k,'JSFIDDLE':jsfiddle[k] }[key]; });
+                $(".container").append(header);
+            }
+
+            
         });
     </script>
 </head>
-
-<body>
-    <div class="container">
+<script type="text/html" id="fiddle-container">
         <div class="row">
-
-            <div class="panel panel-default">
-                <div class="panel-heading">简单初始化</div>
+            <div class="panel panel-default col-md-10 col-md-offset-1">
+                <div class="panel-heading">[TITLE]</div>
                 <div class="panel-body">
-                    <div calss="col-md-10 col-md-offset-2">
-                        <h3 class=""></h3>
-                        <div class="col-md-4">
-                            <div id="turn-table"></div>
-                        </div>
-                        <div class="col-md-4">
-                            <code>
-        $(document).ready(function() {
-            var turnTable=new TurnTable({
-                domid:"turn-table",
-                sub:8,
-                respath:'resource'
-            });           
-        });
-                </code>
-                        </div>
+                    <div calss="col-md-10 ">
+                        [JSFIDDLE]
                     </div>
                 </div>
             </div>
-
-
         </div>
-
+</script>
+<body>
+    <div class="jumbotron masthead" style="text-align:center">
+      <div class="container">
+        <h1>turntable</h1>
+        <h2>基于jquery实现的转盘插件</h2>
+        <p>提供丰富的自定义选项来控制资源加载、旋转、速度、转向、事件</p>
+        <p class="masthead-button-links">
+          <a class="btn btn-lg btn-primary btn-shadow" href="http://v3.bootcss.com/" target="_blank" role="button" onclick="_hmt.push(['_trackEvent', 'masthead', 'click', 'masthead-Bootstrap3中文文档'])">Bootstrap3中文文档(v3.3.5)</a>
+        </p>
+        <ul class="masthead-links">
+          <li>
+            <a href="http://v2.bootcss.com/" target="_blank" role="button" onclick="_hmt.push(['_trackEvent', 'masthead', 'click', 'masthead-Bootstrap2中文文档'])">Bootstrap2中文文档(v2.3.2)</a>
+          </li>
+        </ul>
+      </div>
     </div>
 </body>
 
