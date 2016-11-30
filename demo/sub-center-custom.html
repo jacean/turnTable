@@ -1,46 +1,15 @@
-# turntable
-## 转盘
-  利用jquery实现的转盘效果。
-## 功能
+<!DOCTYPE html>
+<html lang="en">
 
-- 转盘子元素数量可变
-- 转盘中心元素显示隐藏
-- 转盘旋转
-- 转盘子元素自身旋转
-- 转盘中心元素自身旋转
-- 旋转方向控制
-- 旋转速率控制
-- 元素事件自定义
-
-## 使用
-1. 引用js和css
-```
+<head>
+    <meta charset="UTF-8">
+    <title>turntable</title>
+    <script src="libs/jquery.min.js"></script>
     <script src="js/turnTable.js"></script>
     <link rel="stylesheet" href="css/turnTable.css">
-```
+    <style>      
 
-2. 添加turntable容器
-```
-<body>
-    <div id="turn-table"></div>
-</body>
-```
-
-3. 初始化turntable
-- 基础使用:3个必须参数
-```
-    <script>
-        $(document).ready(function() {
-            var turnTable=new TurnTable({
-                domid:"turn-table",
-                sub:8,
-                respath:'resource'
-            });           
-        });
-    </script>
-```
-- 自定义使用:参数可选
-```
+    </style>
     <script>
         $(document).ready(function() {
             var turnTable=new TurnTable({
@@ -75,4 +44,9 @@
            
         });
     </script>
-```
+</head>
+<body>
+    <div id="turn-table"></div>
+</body>
+
+</html>

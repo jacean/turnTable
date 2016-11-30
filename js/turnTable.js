@@ -24,13 +24,8 @@ var TurnTable=function(opts){
         console.log("turntable init arguments error:TurnTable sub");
         return;
     }
-    if(options.respath==false){
-        console.log("turntable init arguments error:TurnTable respath");
-        return;
-    }
     
     var domid=options.domid;
-    var respath=options.respath;
     var speed=options.speed;
     var radius=options.radius;
 
@@ -57,54 +52,48 @@ var TurnTable=function(opts){
             t:newTop-sub_r
         }
     }
-    function setCenter(){
-        if(typeof options.center=="boolean")
-        {
-            if(!options.center){
-                return;
-            }
+    function setCenter(){   
+        if(typeof options.center=="undefined")return;     
+        var _center=options.center;
+        var center={
+            res:"",
+            display:"show",
+            rotate:false,
+            direct:"right",
+            bind:{},
+            radius:25
         }
-        var turn_center=loadCenterDom();
-        /**
-         * {
-         *      display:show/hide,
-         *      rotate:true/false,
-         *      direct:left/right,
-        //  *      speed:0-10,
-         *      icon:turn-table-center|custom,
-         *      bind:{
-         *          click:function,
-         *          mouseover:function,
-         *          mouseout:function
-         *      }
-         * }
-         */
-        if(typeof options.center=="object"){
-            var option=options.center;
+        if(typeof _center=="string"){
+            center.res=_center;
+        }
+        if(typeof _center=="object"){
+            $.extend(center,_center);
+        }
 
-            /**display */
-            turn_center.addClass('turn-table-center-'+option.display);
-            /**rotate&direct */
-            var rotate= typeof option.rotate=="undefined"?false:option.rotate;
-            if(rotate){
-                rotateCenter(option.direct);
-            }
-            /**bind */            
-            var bind="turn_center";
-            var event="";
-            for(var k in option.bind){
-                event+="."+k+"("+option.bind[k]+")";
-            }
-            if(event!="")
-            {
-                bind+=event;
-                try{
-                    eval(bind);
-                }catch(e){
-                    console.log(e);
-                }
-            }      
+        var turn_center=loadCenterDom(center); 
+
+        /**display */
+        turn_center.addClass('turn-table-center-'+center.display);
+        /**rotate&direct */
+        if(center.rotate){
+            rotateCenter(center.direct);
         }
+        /**bind */            
+        var bind="turn_center";
+        var event="";
+        for(var k in center.bind){
+            event+="."+k+"("+center.bind[k]+")";
+        }
+        if(event!="")
+        {
+            bind+=event;
+            try{
+                eval(bind);
+            }catch(e){
+                console.log(e);
+            }
+        }      
+        
  
     }
     function rotateCenter(d){
@@ -120,18 +109,18 @@ var TurnTable=function(opts){
                 rotateCenter(d);
             });
     }
-    function loadCenterDom(){
+    function loadCenterDom(center){
         var turn_table=$("#"+domid);
         turn_table.append(
             "<div id='turn-center' class='turn-table-center'></div>"
         );
 
-        var center_r=25;
+        var center_r=center.radius;
         $(".turn-table-center").css('left',xcenter-center_r).css('top',ycenter-center_r);
 
         var turn_center=$(".turn-table-center");
         turn_center.append(
-            "<img  src='"+respath+"/turn-center.png' alt='center'/>"
+            "<img  src='"+center.res+"' alt='center'/>"
         );
         return turn_center;
     }
@@ -148,8 +137,9 @@ var TurnTable=function(opts){
             ycenter=radius+margin;
         /** */  
     }
-    function loadSubDom(num){
+    function loadSubDom(res){
         var turn_table=$("#"+domid);
+        var num=res.length;
         for(var j=0;j<num;j++){
             turn_table.append(
                 "<div id='turn-sub-"+j+"' class='turn-table-sub'></div>"
@@ -159,7 +149,7 @@ var TurnTable=function(opts){
         var k=0;
         $.each(turn_subs,function(){
             $(this).append(
-                "<img src='"+respath+"/turn-table-sub-"+k+".png' alt='sub-"+k+"'/>"
+                "<img src='"+res[k]+"' alt='sub-"+k+"'/>"
             );
             k++;
         });
@@ -168,15 +158,21 @@ var TurnTable=function(opts){
     function setSub(){
         var _sub=options.sub;
         var sub={
-            subnum:0,
+            res:[],
+            repeat:false,
             rotate:false,
             direct:"right",
             bind:{},
             speed:9
         }
-        /**
+        var repeat=false;
+        /**可以只提供资源图片数组
          * {
          *      subnum:num
+         *      res:[
+         *          1.png,
+         *          2.png
+         *      ]
          *      rotate:true/false,
          *      direct:left/right,
         //  *      speed:0-9,
@@ -188,18 +184,29 @@ var TurnTable=function(opts){
          *      }
          * }
          */
-        if(typeof _sub=="number"){
-            sub.subnum=_sub;
-        }
-        if(typeof _sub=="object"){
-            if(_sub.subnum=="undefined"){
-                console.log("arguments error:lose subnum");
+        if($.isArray(_sub)){
+            sub.res=_sub;
+        }else if(typeof _sub=="object"){
+            if(_sub.res=="undefined"){
+                console.log("arguments error:lose res");
                 return false;
             }
-            $.extend(sub,_sub);            
-        }       
-        STEP=360/sub.subnum;
-        var turn_subs=loadSubDom(sub.subnum);
+            $.extend(sub,_sub); 
+            repeat=typeof sub.repeat=="undefined"?false:sub.repeat;
+            if(!!repeat&&sub.res.length==1){
+                for(var i=1;i<repeat;i++){
+                    sub.res[i]=sub.res[0];
+                }
+            }
+
+        }           
+        if(sub.res.length==0){
+            console.log("res load error");
+            return;
+        }    
+
+        STEP=360/sub.res.length;
+        var turn_subs=loadSubDom(sub.res);
          /**bind event*/            
         var bind="$(this)";
         var event="";

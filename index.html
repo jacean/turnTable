@@ -7,37 +7,40 @@
     <script src="libs/jquery.min.js"></script>
     <script src="js/turnTable.js"></script>
     <link rel="stylesheet" href="css/turnTable.css">
-    <style>      
+
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <style>
 
     </style>
     <script>
         $(document).ready(function() {
-            // var turnTable=new TurnTable("turn-table",9,"resource",9);
             var turnTable=new TurnTable({
                 domid:"turn-table",
                 sub:{
-                    subnum:8,
+                    res:["http://download.easyicon.net/png/528802/256/"],
+                    repeat:3,
                     rotate:true,
                     direct:"right",
                     bind:{
                         mouseover:function(){
-                            console.log("over html");
+                            console.log("sub-over");
                         }
                     }
                 },
-                respath:"resource",
                 speed:9,
                 radius:100,
                 center:{
+                    res:"http://download.easyicon.net/png/528801/256/",
                     display:"show",
                     rotate:true,
                     direct:"left",
                     bind:{
                         click:function(){
-                            console.log("click");
+                            console.log("center-click");
                         },
                         mouseover:function(){
-                            console.log("over");
+                            console.log("center-over");
                         }
                     }
                 }
@@ -46,8 +49,38 @@
         });
     </script>
 </head>
+
 <body>
-    <div id="turn-table"></div>
+    <div class="container">
+        <div class="row">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">简单初始化</div>
+                <div class="panel-body">
+                    <div calss="col-md-10 col-md-offset-2">
+                        <h3 class=""></h3>
+                        <div class="col-md-4">
+                            <div id="turn-table"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <code>
+        $(document).ready(function() {
+            var turnTable=new TurnTable({
+                domid:"turn-table",
+                sub:8,
+                respath:'resource'
+            });           
+        });
+                </code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
 </body>
 
 </html>
