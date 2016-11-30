@@ -53,7 +53,7 @@ var TurnTable=function(opts){
         }
     }
     function setCenter(){   
-        if(typeof options.center=="undefined")return;     
+        if(!options.center)return;     
         var _center=options.center;
         var center={
             res:"",
@@ -163,7 +163,8 @@ var TurnTable=function(opts){
             rotate:false,
             direct:"right",
             bind:{},
-            speed:9
+            speed:9,
+            display:"show"
         }
         var repeat=false;
         /**可以只提供资源图片数组
@@ -227,6 +228,12 @@ var TurnTable=function(opts){
         /**rotate */
         if(sub.rotate){
             rotateSub(sub.direct);
+        }
+        /**display */
+        if(sub.display=="show"){
+            turn_subs.removeClass("turn-table-sub-hide");
+        }else{
+            turn_subs.addClass("turn-table-sub-hide");
         }
 
     }
