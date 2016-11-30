@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>turnTable</title>
+    <script src="libs/jquery.min.js"></script>
+    <script src="js/turnTable.js"></script>
+    <link rel="stylesheet" href="css/turnTable.css">
+    <style>      
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            var turnTable=new TurnTable({
+                domid:"turn-table",
+                sub:8,
+                respath:'resource'
+            });           
+        });
+    </script>
+</head>
+<body>
+    <div id="turn-table"></div>
+</body>
+
+</html>

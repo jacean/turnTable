@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="libs/jquery.min.js"></script>
+    <script src="js/turnTable.js"></script>
+    <link rel="stylesheet" href="css/turnTable.css">
+    <style>      
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            // var turnTable=new TurnTable("turn-table",9,"resource",9);
+            var turnTable=new TurnTable({
+                domid:"turn-table",
+                sub:{
+                    subnum:8,
+                    rotate:true,
+                    direct:"right",
+                    bind:{
+                        mouseover:function(){
+                            console.log("over html");
+                        }
+                    }
+                },
+                respath:"resource",
+                speed:9,
+                radius:100,
+                center:{
+                    display:"show",
+                    rotate:true,
+                    direct:"left",
+                    bind:{
+                        click:function(){
+                            console.log("click");
+                        },
+                        mouseover:function(){
+                            console.log("over");
+                        }
+                    }
+                }
+            });
+           
+        });
+    </script>
+</head>
+<body>
+    <div id="turn-table"></div>
+</body>
+
+</html>

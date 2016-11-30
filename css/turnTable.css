@@ -1,0 +1,37 @@
+/*!
+ * TurnTable v0.0.1 Stylesheet
+ * Docs & License: 
+ * (c) 2016 jacean
+ */
+
+.turn-table{
+    position: relative;
+}
+.turn-table-center{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+.turn-table-center img{
+    width: 100%;
+    height: 100%;
+}
+.turn-table-center-hide{
+    display: none;
+}
+.turn-table-center-show{
+    display: block;
+}
+.turn-table-sub {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+.turn-table-sub img{
+    width: 100%;
+    height: 100%;
+}
+.turn-table-sub-hover{
+    width: 70px;
+    height: 70px;
+}
