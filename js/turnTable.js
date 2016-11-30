@@ -2,7 +2,6 @@
 
 //每个小模块自带div-class .turn-table
 (function(){
-    alert("turn table loading");
 })();
 var defaultOptions={
     domid:false,
