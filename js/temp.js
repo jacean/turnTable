@@ -303,11 +303,11 @@ var TurnTable=function(opts){
             for(var j=0;j<turns.length;j++){
                 $me=$(turns[j]);
                 i=parseInt($me.data("index"));
-                $me.css('transform','translate('+ rotateCoord(i).l +'px,'+rotateCoord(i).t+'px)').css('transition-duration',duration*10);   
+                $me.css('transform','translate('+ rotateCoord(i).l +'px,'+rotateCoord(i).t+'px)');   
             }
             t=setTimeout(function() {
                 rotateTable();
-            }, duration*10);
+            }, 10);
             
         }
 
@@ -321,9 +321,10 @@ var TurnTable=function(opts){
         $.each(turns,function(){
             $(this)
             .mouseover(function(){
-                if(!$(this).hasClass('turn-table-sub-hover')){
-                    $(this).addClass("turn-table-sub-hover");
-                }
+
+                // if(!$(this).hasClass('turn-table-sub-hover')){
+                //     $(this).addClass("turn-table-sub-hover");
+                // }
             })
             .mouseout(function(){
 

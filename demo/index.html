@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>turntable</title>
+    <script src="../libs/jquery.min.js"></script>
+    <script src="../js/turnTable.js"></script>
+    <link rel="stylesheet" href="../css/turnTable.css">
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <style>
+
+    </style>
+   <script>
+   $(document).ready(function() {
+  var turnTable = new TurnTable({
+    domid: "turn-table",
+    sub: {
+      res: ["../resource/chrome.png"],
+      repeat: 3,
+      rotate: false,
+      direct: "right",
+      bind: {
+        click: function() {
+        //   alert("click sub");
+        },
+        mouseover: function() {
+          console.log("sub-over");
+        }
+      }
+    },
+    speed: 4,
+    radius: 100,
+    center: {
+      res: "../resource/gold-chrome.png",
+      display: "show",
+      rotate: true,
+      direct: "left",
+      bind: {
+        click: function() {
+          //alert("center-click");
+        },
+        mouseover: function() {
+          console.log("center-over");
+        }
+      }
+    }
+  });
+
+});
+</script>
+</head>
+
+<body>
+<div id="turn-table"></div>
+</body>
+
+</html>

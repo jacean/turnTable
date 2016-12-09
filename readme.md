@@ -1,6 +1,7 @@
 # turntable
 ## 转盘
   利用jquery实现的转盘效果。
+>  [GitPage]( https://jacean.github.io/turntable/)页面访问
 ## 功能
 
 - 转盘子元素数量可变
