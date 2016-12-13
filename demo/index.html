@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>turntable</title>
     <script src="../libs/jquery.min.js"></script>
+    <script src="../js/getCSSrules.js"></script>
     <script src="../js/turnTable.js"></script>
     <link rel="stylesheet" href="../css/turnTable.css">
 
@@ -20,6 +21,7 @@
     sub: {
       res: ["../resource/chrome.png"],
       repeat: 3,
+      radius:50,
       rotate: false,
       direct: "right",
       bind: {
@@ -38,6 +40,7 @@
       display: "show",
       rotate: true,
       direct: "left",
+      radius:50,
       bind: {
         click: function() {
           //alert("center-click");
@@ -46,6 +49,9 @@
           console.log("center-over");
         }
       }
+    },coord:{
+      x:300,
+      y:400
     }
   });
 

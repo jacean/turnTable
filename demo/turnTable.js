@@ -276,7 +276,6 @@ var subradiu=25;
 
         /**radius */
         if (sub.radius != null) {
-            subradiu=sub.radius;
             turn_subs.css({
                 width: sub.radius*2,
                 height: sub.radius*2
